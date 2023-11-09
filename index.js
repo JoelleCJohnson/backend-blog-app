@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { MongoClient } from 'mongodb'
+import { MongoClient, ObjectId } from 'mongodb'
 
 import 'dotenv/config'
 
@@ -58,6 +58,15 @@ app.post('/post', async (req, res) => {
 
     const allPosts = await blogPosts.find().toArray()
     res.send(allPosts)
+})
+
+//delete one blog post
+app.delete('/:_id', async (req, res) => {
+    //pass through id value in url to get it to delete. 
+    // const _id = new ObjectId(req.query._id)
+    const _id = new ObjectId(req.params._id)
+    const itemDeleted = await blogPosts.findOneAndDelete({ _id: _id})
+    res.send(itemDeleted)
 })
 
 app.listen(process.env.PORT || 8080, () => console.log('Api listening on port 8080 😎'))
