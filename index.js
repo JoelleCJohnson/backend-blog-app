@@ -60,7 +60,7 @@ app.post('/post', async (req, res) => {
     res.send(allPosts)
 })
 
-//delete one blog post
+//delete one blog post 
 app.delete('/:_id', async (req, res) => {
     //pass through id value in url to get it to delete. 
     // const _id = new ObjectId(req.query._id)
@@ -69,5 +69,5 @@ app.delete('/:_id', async (req, res) => {
     res.send(itemDeleted)
 })
 
-app.listen(process.env.PORT || 8080, () => console.log('Api listening on port 8080 😎'))
+app.listen(PORT || 8080, () => console.log('Api listening on port 8080 😎'))
 
